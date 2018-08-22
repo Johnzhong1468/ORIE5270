@@ -1,0 +1,6 @@
+[
+  "tests/test_tree.py::TestPrintTree::test1",
+  "tests/test_tree.py::TestPrintTree::test2",
+  "tests/test_tree.py::TestPrintTree::test3",
+  "tests/test_tree.py::TestPrintTree::test4"
+]
