@@ -3,6 +3,10 @@ import random
 import numpy as np
 
 def rb(x):
+    """
+    Rosenbrock function
+    :param x: array(1xn)
+    """
     f_sum = 0
     for i in range(len(x)-1):
         f_sum += 100*(x[i+1]-x[i]**2)**2+(1-x[i])**2
