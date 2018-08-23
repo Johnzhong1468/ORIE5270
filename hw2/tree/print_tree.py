@@ -61,6 +61,7 @@ class Tree(Node):
             print("".join(df[i])+"\n")
         return df
 
+
 # if __name__ == '__main__':
 #     node1 = Node(2)
 #     node2 = Node(4)
