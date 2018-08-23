@@ -5,12 +5,14 @@ from tree.print_tree import Node, Tree
 
 class TestPrintTree(unittest.TestCase):
     def test1(self):
+        # single node as tree
         node1 = Node(0)
         self.answer = [['0']]
         self.input = Tree.print_tree(node1)
         assert self.input == self.answer
 
     def test2(self):
+        # full balanced tree
         node1 = Node(2)
         node2 = Node(4)
         node3 = Node(6)
@@ -31,6 +33,7 @@ class TestPrintTree(unittest.TestCase):
         assert self.input == self.answer
 
     def test3(self):
+        # all branches on the left 
         node1 = Node(2)
         node2 = Node(4)
         node3 = Node(6)
@@ -46,6 +49,7 @@ class TestPrintTree(unittest.TestCase):
         assert self.input == self.answer
 
     def test4(self):
+        # irregular tree
         root = Node(1)
         r11 = Node(2)
         r12 = Node(3)
