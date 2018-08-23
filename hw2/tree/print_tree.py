@@ -20,6 +20,8 @@ class Tree(Node):
         """
         Resursive function to find depth
         Find depth of whichever side gets to bottom first
+        :param root: Node class object, root of tree
+        :return maximum depth of tree
         """
         if root.left:
             left_depth = cls.find_depth(root.left)
@@ -33,12 +35,19 @@ class Tree(Node):
 
     @classmethod
     def print_tree(cls, root):
+        """
+        print tree, first define a fill_tree function,
+        then calculate depth and create empty tree,
+        then fill tree
+        :param root: root of Node class
+        """
         def fill_tree(root, d, w):
             """
-            Function to fill a blank tree
+            Function to fill a blank tree,
+            given depth and an empty tree to fill
             Recursion to get depth and position of each number to fill
-            :param d: to track depth of node
-            :param w: to track left and right branches
+            :param d: starting depth to track depth of node (int)
+            :param w: list to track left and right branches (list)
             """
             if root.left:
                 fill_tree(root.left, d+1, w+[-1])
