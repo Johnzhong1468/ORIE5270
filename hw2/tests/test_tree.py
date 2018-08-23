@@ -33,7 +33,7 @@ class TestPrintTree(unittest.TestCase):
         assert self.input == self.answer
 
     def test3(self):
-        # all branches on the left 
+        # all branches on the left
         node1 = Node(2)
         node2 = Node(4)
         node3 = Node(6)
