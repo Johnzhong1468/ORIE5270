@@ -20,8 +20,8 @@ class TestGraphs(unittest.TestCase):
         assert self.input == self.answer
 
     def test_shortest_4(self):
-        self.answer = (5, [2, 3, 9, 8])
-        self.input = find_shortest_path("shortest_graph.txt", 2, 8)
+        self.answer = (5, [1, 2, 3, 4, 6])
+        self.input = find_shortest_path("shortest_graph1.txt", 1, 6)
         assert self.input == self.answer
 
     def test_negative_cycle_1(self):

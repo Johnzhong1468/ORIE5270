@@ -56,6 +56,9 @@ def find_shortest_path(text_file, source, end):
                 previous[item] = f[1]
             elif dist[f[1]]+graph[f[1]][item] < dist[item]:
                 dist[item] = dist[f[1]]+graph[f[1]][item]
+                # update value in Frontier
+                Frontier = [i for i in Frontier if i[1] != item]
+                heapq.heappush(Frontier, (dist[item], item))
                 previous[item] = f[1]
     # print path
     path = [end]
