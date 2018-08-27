@@ -33,9 +33,17 @@ def find_shortest_path(text_file, source, end):
     file = open(text_file, "r")
     lines = file.readlines()
     graph = dict()
-    for i in range(len(lines)):
-        if i % 2 == 1:
-            graph[float(lines[i-1])] = create_edges(lines[i])
+    line_len = len(lines)
+    if line_len % 2 == 0:
+        for i in range(line_len):
+            if i % 2 == 1:
+                graph[float(lines[i-1])] = create_edges(lines[i])
+    else:
+        for i in range(line_len):
+            if i % 2 == 1:
+                graph[float(lines[i-1])] = create_edges(lines[i])
+        graph[float(lines[-1])] = {}
+
     # S is set
     # F is list of tuples of the form (distance, graph item)
     # dist is a dictionary that records distance of each point to source
@@ -57,8 +65,8 @@ def find_shortest_path(text_file, source, end):
             elif dist[f[1]]+graph[f[1]][item] < dist[item]:
                 dist[item] = dist[f[1]]+graph[f[1]][item]
                 # update value in Frontier
-                Frontier = [i for i in Frontier if i[1] != item]
-                heapq.heappush(Frontier, (dist[item], item))
+                # Frontier = [i for i in Frontier if i[1] != item]
+                # heapq.heappush(Frontier, (dist[item], item))
                 previous[item] = f[1]
     # print path
     path = [end]
@@ -85,9 +93,16 @@ def find_negative_cycles(text_file):
     file = open(text_file, "r")
     lines = file.readlines()
     graph = dict()
-    for i in range(len(lines)):
-        if i % 2 == 1:
-            graph[float(lines[i-1])] = create_edges(lines[i])
+    line_len = len(lines)
+    if line_len % 2 == 0:
+        for i in range(line_len):
+            if i % 2 == 1:
+                graph[float(lines[i-1])] = create_edges(lines[i])
+    else:
+        for i in range(line_len):
+            if i % 2 == 1:
+                graph[float(lines[i-1])] = create_edges(lines[i])
+        graph[float(lines[-1])] = {}
     for init in graph:
         # initialize
         # set initial distance from souce to of all points is 0

@@ -24,6 +24,11 @@ class TestGraphs(unittest.TestCase):
         self.input = find_shortest_path("shortest_graph1.txt", 1, 6)
         assert self.input == self.answer
 
+    def test_shortest_5(self):
+        self.answer = (3, [1, 2, 4])
+        self.input = find_shortest_path("shortest_graph2.txt", 1, 4)
+        assert self.input == self.answer
+
     def test_negative_cycle_1(self):
         self.answer = None
         self.input = find_negative_cycles("shortest_graph.txt")
