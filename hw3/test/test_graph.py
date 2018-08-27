@@ -43,3 +43,8 @@ class TestGraphs(unittest.TestCase):
         self.answer = [2, 3, 5, 4, 2]
         self.input = find_negative_cycles("cycle_graph1.txt")
         assert self.input == self.answer
+
+    def test_negative_cycle_4(self):
+        self.answer = [4, 2, 3, 5, 4]
+        self.input = find_negative_cycles("cycle_graph2.txt")
+        assert self.input == self.answer

@@ -2,6 +2,7 @@
   "test/test_graph.py::TestGraphs::test_negative_cycle_1",
   "test/test_graph.py::TestGraphs::test_negative_cycle_2",
   "test/test_graph.py::TestGraphs::test_negative_cycle_3",
+  "test/test_graph.py::TestGraphs::test_negative_cycle_4",
   "test/test_graph.py::TestGraphs::test_shortest_1",
   "test/test_graph.py::TestGraphs::test_shortest_2",
   "test/test_graph.py::TestGraphs::test_shortest_3",
