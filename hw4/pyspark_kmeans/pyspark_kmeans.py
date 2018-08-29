@@ -4,11 +4,14 @@ import sys
 
 
 def pt_idx(l):
+    # flatMap to format ((centroid key, dimension index),
+    #                    (value, 1))
     for i in range(len(l[1])):
         yield((l[0], i), (l[1][i], 1))
 
 
 def write_txt(input):
+    # write finals seeds to txt file
     file = open("final_seeds.txt", "w")
     for i in input:
         pt = ""
@@ -23,7 +26,7 @@ def pyspark_kmeans(data_file, centroids_file, max_iter=20):
     data_file: txt file name, stores all points
     centroids_file: txt file name, stores starting point
     max_iter: int, maximum iteration limit before stopping
-    return: np.array
+    return: txt file that contains final seeds
     """
     # Load the data
     data = sc.textFile(data_file).map(
@@ -47,7 +50,7 @@ def pyspark_kmeans(data_file, centroids_file, max_iter=20):
         new_centroids = np.array([[j[1] for j in sorted(i[1])]
                                  for i in sorted(group)])
         check = np.linalg.norm(centroids - new_centroids)
-        print(check)
+        # print(check)
         if check == 0:
             break
         else:
