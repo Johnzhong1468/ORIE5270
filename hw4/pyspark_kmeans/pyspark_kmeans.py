@@ -21,7 +21,7 @@ def write_txt(input):
     file.close()
 
 
-def pyspark_kmeans(data_file, centroids_file, max_iter=20):
+def pyspark_kmeans(data_file, centroids_file, max_iter=100):
     """
     data_file: txt file name, stores all points
     centroids_file: txt file name, stores starting point
@@ -64,5 +64,5 @@ def pyspark_kmeans(data_file, centroids_file, max_iter=20):
 
 if __name__ == '__main__':
     sc = pyspark.SparkContext(appName="k-means")
-    pyspark_kmeans(sys.argv[1], sys.argv[2], max_iter=20)
+    pyspark_kmeans(sys.argv[1], sys.argv[2])
     sc.stop()
