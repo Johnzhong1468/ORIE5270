@@ -40,15 +40,19 @@ def pyspark_kmeans(data_file, centroids_file, max_iter=20):
     for iter_count in range(max_iter):
         # group points by centriods
         labeled_data = data.map(lambda l: (np.argmin([np.linalg.norm(l-i)
-                                for i in centroids]), l))
-        idx_data = labeled_data.flatMap(pt_idx)
-        sum_data = idx_data.reduceByKey(lambda n1, n2: (n1[0] + n2[0],
-                                        n1[1] + n2[1]))
-        rearrange = sum_data.map(lambda l: (l[0][0], [(l[0][1],
-                                            l[1][0]/l[1][1])]))
-        group = rearrange.reduceByKey(lambda a, b: a + b).collect()
-        new_centroids = np.array([[j[1] for j in sorted(i[1])]
-                                 for i in sorted(group)])
+                                for i in centroids]), (l, 1)))
+        # idx_data = labeled_data.flatMap(pt_idx)
+        # sum_data = idx_data.reduceByKey(lambda n1, n2: (n1[0] + n2[0],
+        #                                 n1[1] + n2[1]))
+        # rearrange = sum_data.map(lambda l: (l[0][0], [(l[0][1],
+        #                                     l[1][0]/l[1][1])]))
+        # group = rearrange.reduceByKey(lambda a, b: a + b).collect()
+        group = labeled_data.reduceByKey(
+            lambda a, b: (a[0] + b[0], a[1] + b[1])).sortByKey(ascending=True)
+        # new_centroids = np.array([[j[1] for j in sorted(i[1])]
+        #                          for i in sorted(group)])
+        new_centroids = np.array(group.map(
+            lambda l: l[1][0]/l[1][1]).collect())
         check = np.linalg.norm(centroids - new_centroids)
         # print(check)
         if check == 0:
