@@ -10,15 +10,15 @@ def pt_idx(l):
         yield((l[0], i), (l[1][i], 1))
 
 
-def write_txt(input):
-    # write finals seeds to txt file
-    file = open("final_seeds.txt", "w")
-    for i in input:
-        pt = ""
-        for num in i:
-            pt += str(num) + " "
-        file.write(pt + "\n")
-    file.close()
+# def write_txt(input):
+#     # write finals seeds to txt file
+#     file = open("final_seeds.txt", "w")
+#     for i in input:
+#         pt = ""
+#         for num in i:
+#             pt += str(num) + " "
+#         file.write(pt + "\n")
+#     file.close()
 
 
 def pyspark_kmeans(data_file, centroids_file, max_iter=100):
@@ -59,7 +59,7 @@ def pyspark_kmeans(data_file, centroids_file, max_iter=100):
             break
         else:
             centroids = new_centroids[:]
-        write_txt(centroids)
+        return centroids
 
 
 if __name__ == '__main__':

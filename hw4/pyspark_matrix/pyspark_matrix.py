@@ -33,12 +33,13 @@ def pyspark_matrix(A, v):
                                        l[1][0][1]*l[1][1]))
     result = np.array(A_flat_join.reduceByKey(lambda a, b: a + b).
                       map(lambda l: l[1]).collect())
-    file = open("matrix_multiply_output.txt", "w")
-    pt = ""
-    for num in result:
-        pt += str(num) + " "
-    file.write(pt)
-    file.close()
+    # file = open("matrix_multiply_output.txt", "w")
+    # pt = ""
+    # for num in result:
+    #     pt += str(num) + " "
+    # file.write(pt)
+    # file.close()
+    return result
 
 
 if __name__ == '__main__':
