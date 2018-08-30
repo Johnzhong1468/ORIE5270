@@ -31,8 +31,7 @@ def pyspark_matrix(A, v):
     v = v.flatMap(reduce_v)
     A_flat_join = A_flat_j.join(v).map(lambda l: (l[1][0][0],
                                        l[1][0][1]*l[1][1]))
-    result = np.array(A_flat_join.reduceByKey(lambda a, b: a + b).
-                      map(lambda l: l[1]).collect())
+    result = A_flat_join.reduceByKey(lambda a, b: a + b).map(lambda l: l[1])
     # file = open("matrix_multiply_output.txt", "w")
     # pt = ""
     # for num in result:
